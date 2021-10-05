@@ -1,20 +1,37 @@
 ---
-title: "josh does a markdown"
-output: html_document
+title: "R markdown tutorial"
+output: 
+  html_document:
+    toc: true
+*output: 
+  *html_notebook: default
+  
 
 ---
 
 
+## R markdown vs R markdown notebooks
+
+The first thing I did was to change the output type from `html_document`, to `html_notebook: default` 
+  
+  *The benefit of this is that the notebook keeps a saved version of the document and incorporates additions, rather than having to re-render the entire document each time 
+  
+  *uses preview, rather than knit
+
 In general, Rmarkdown separates sections via three ```. 
 
+
+
   * these sections are known as 'code chunks'
-    + they organise your document for easier reading
-        - you can quickly insert chunks by pressing **ctrl + alt + I** 
-        - alternatively, you can add chunks with the add chunk button (green c with a plus)
+    * they organise your document for easier reading
+        * you can quickly insert chunks by pressing **ctrl + alt + I** 
+        * alternatively, you can add chunks with the add chunk button (green c with a plus)
         
 For annotations that explain code, leave them out of code chunks.
 
-# **Formatting**
+
+
+## Formatting
 
 There are many formatting options available in markdown including
 
@@ -27,15 +44,29 @@ There are many formatting options available in markdown including
 
 In addition, you can make heading levels by adding # at the front of the line, these headings can also have in-line formatting;
 
-# *hi* **there** 
-## *hi* **there** 
-### *hi* **there**
+# Header 1
+## Header 2
+### Header 3
 
 To produce the file you have been working on in Rmarkdown either click the knit button, or use **ctrl + shift + k**
 
 For a detailed list of formatting please see this [link](https://pandoc.org/MANUAL.html#pandocs-markdown)
 
+The guide I used to create this can be found at: <https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/>
 
+
+
+# Bullet points and numbered lists
+
+* List element 1 
+* List element 2
+    * List item 1
+  
+1. item 1
+    * item 1a
+1. item 2
+1. item 3
+    * item 3a
 _______________________________________________________________
 
 Rmarkdown provides an excellent method to integrate text into writing scripts, from simply annotating code for easier reading, up to producing documents and powerpoint presentations.
@@ -45,29 +76,45 @@ __________________________________________________________________
 
 Images and figures are integrated straight into the document, and code can be run directly in the script to display the output while you work.
 
-```{r fig.cap= "The Maunga Whau volcano", echo=FALSE}
+
+```{r volcano_Image, fig.cap= "The Maunga Whau volcano", echo=FALSE}
 image(volcano, col= hcl.colors(200, palette = 'viridis'))
+
+#note, to run this part of the script you need to have the package viridis installed in you R library- install.packages('viridis')
 ```
 
+
+
 ___________________________________________________________________________
+
 You can create, and alter dataframes much the same as you would in Rstudio
 
-```{r}
+
+```{r dataset_creation, echo=FALSE}
+#creating dataset
 rand_numb1 <- c(1, 3, 7, 5, 4, 7, 8, 3, 6)
 speed <- c(10, 20, 30, 40, 50, 60, 70, 80, 90)
 Rmkd_dataset <- data.frame(rand_numb1, speed)
+
+#displaying dataset
 head(Rmkd_dataset)
+
 ```
 
-```{r}
+```{r data_summary, echo=FALSE}
+
+
 summary(Rmkd_dataset)
 ```
 
-```{r}
+```{r data_plot, echo=FALSE}
 plot(Rmkd_dataset, type = "p", main = "speed at number= x")
 ```
 
 _________________________________________________________________
+
+
+
 
 # **Alternate code languages**
 
@@ -102,6 +149,7 @@ This can be useful, for example if you have specific processes that requires pro
 
   - For example, in my case I used many program suites not available in R for data preparation and filtration.
     + At the time I had to maintain multiple different scripts across the programs to handle this, but had I used Rmarkdown it would have allowed me to contain it all within the single script.
+    
     
 
 
